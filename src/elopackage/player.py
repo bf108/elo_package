@@ -43,7 +43,7 @@ class Player:
             p2 - Player Object of opposition
 
         return:
-            None
+            matplotlib fig object
         """
         plt.rcParams.update({'font.size': 15})
         min_rating = min(self.rating, p2.rating)
@@ -62,6 +62,8 @@ class Player:
         plt.tight_layout()
         plt.show()
 
+        return fig
+
     def visualize_prob_winning(self, p2):
         """
         2D Plot showing distribution and probability of player beating p2
@@ -70,7 +72,7 @@ class Player:
             p2 - Player Object of opposition
 
         return:
-            None
+            matplotlib fig object
         """
         plt.rcParams.update({'font.size': 15})
         new_mean = self.rating - p2.rating
@@ -91,12 +93,14 @@ class Player:
         plt.tight_layout()
         plt.show()
 
+        return fig
+
     def visualize_rating_hist(self):
         """
-        2D Plot showing player ELO rating overtime
+        2D Plot showing player ELO rating changes overtime
 
         args:None
-        return:None
+        return: matplotlib fig object
         """
         plt.rcParams.update({'font.size': 15})
         fig, ax = plt.subplots()
@@ -107,6 +111,10 @@ class Player:
         ax.set_ylabel('Player Rating');
         plt.tight_layout()
         plt.show()
+
+        return fig
+
+
 
     def combine(self, p2):
         """
