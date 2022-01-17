@@ -114,8 +114,6 @@ class Player:
 
         return fig
 
-
-
     def combine(self, p2):
         """
         Returns a new player object which is a combination of existing and p2
