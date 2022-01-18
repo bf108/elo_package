@@ -6,7 +6,7 @@ Each player will then have a mean "skill' and 'variance' - squared deviation fro
 ##### Probability Density Function (PDF) and Cumulative Distribution Function (CDF)
 Original implementations of ELO assumed that each player's skill was a normally distributed real-valued random variable. To determine the probability that one player would beat another, you had to evalute the probability that
 
-<img src="https://render.githubusercontent.com/render/math?math=$X_1$  ~ $N(\mu_1,\sigma_1^2)$"> would return a higher skill than: <img src="https://render.githubusercontent.com/render/math?math=$X_2$ ~ $N(\mu_2,\sigma_2^2)$">
+<img src="https://render.githubusercontent.com/render/math?math=X_1"> ~ <img src="https://render.githubusercontent.com/render/math?math=N(\mu_1,\sigma_1^2)"> would return a higher skill than: <img src="https://render.githubusercontent.com/render/math?math=X_2">~ <img src="https://render.githubusercontent.com/render/math?math=N(\mu_2,\sigma_2^2)">
 
 ![alt text](https://github.com/bf108/elo_package/blob/master/static/compare_player_skill.png?raw=true)
 
@@ -21,9 +21,9 @@ Linear Combination of Means:
 
 Standard Deviation
 
-<img src="https://render.githubusercontent.com/render/math?math=\sigma = Var(X_1 - X_2) = \sqrt{\sigma_1^2  +  \sigma_2^2}">
+<img src="https://render.githubusercontent.com/render/math?math=\sigma = Var(X_1 - X_2) = \sqrt{\sum{(\sigma_1^2,  \sigma_2^2)}}">
 
-Determining the probability that this new linear combination is greater than zero can be achieved by comparing this distribution to the Standard Normal Distribution <img src="https://render.githubusercontent.com/render/math?math=$Z$ ~ $N(0,1)$">:
+Determining the probability that this new linear combination is greater than zero can be achieved by comparing this distribution to the Standard Normal Distribution <img src="https://render.githubusercontent.com/render/math?math=$Z">~ <img src="https://render.githubusercontent.com/render/math?math=N(0,1)">:
 
 <img src="https://render.githubusercontent.com/render/math?math=X = Z\sigma + \mu">
 
@@ -40,28 +40,28 @@ New versions of ELO use the logistic function instead of the CDF:
 
 <img src="https://render.githubusercontent.com/render/math?math=f(x) = \frac{L}{1-e^{-k(x-x_0)}}">
 
-- $L$ maximum value of function $\lim_{x \to +\infty}$
-- $k$ steepness factor of logistic function
-- $x_o$ - Value of $x$ at mid point
+- <img src="https://render.githubusercontent.com/render/math?math=L"> maximum value of function <img src="https://render.githubusercontent.com/render/math?math=\lim_{x \to +\infty}">
+- <img src="https://render.githubusercontent.com/render/math?math=k"> steepness factor of logistic function
+- <img src="https://render.githubusercontent.com/render/math?math=x_o"> Value of <img src="https://render.githubusercontent.com/render/math?math=x"> at mid point
 
 The normal logistic function can be transformed to provide the probability that one player will beat another as show below:
 
 <img src="https://render.githubusercontent.com/render/math?math=p_A=\frac{1}{1 + b^-\frac{d}{s}}">
 
-- $p_A$ : probability of player A winning
-- $b$ : base (this can be 10, $e$ etc)
-- $d$ : difference between player mean skill
-- $s$ : scale factor (Constant Standard Deviation of player rating $\sigma$=200)
+- <img src="https://render.githubusercontent.com/render/math?math=p_A"> : probability of player A winning
+- <img src="https://render.githubusercontent.com/render/math?math=b"> : base (this can be 10, <img src="https://render.githubusercontent.com/render/math?math=e"> etc)
+- <img src="https://render.githubusercontent.com/render/math?math=d"> : difference between player mean skill
+- <img src="https://render.githubusercontent.com/render/math?math=s"> : scale factor (Constant Standard Deviation of player rating <img src="https://render.githubusercontent.com/render/math?math=\sigma=200">)
 
 
 If we use base 10, instead of natural logarithm used in original logistic function we get the below formula:
 
 <img src="https://render.githubusercontent.com/render/math?math=E_A=\frac{1}{1+10^\frac{R_B-R_A}{s}}">
 
-- $E_A$ - Expected probability of Player $A$ winning.
-- $R_B$ - Player $R_B$ mean rating*
-- $R_A$ - Player $R_A$ mean rating*
-- $s$ : scale factor (Constant Standard Deviation of player rating $\sigma$=200)
+- <img src="https://render.githubusercontent.com/render/math?math=E_A"> - Expected probability of Player <img src="https://render.githubusercontent.com/render/math?math=A">winning.
+- <img src="https://render.githubusercontent.com/render/math?math=R_B"> - Player <img src="https://render.githubusercontent.com/render/math?math=R_B"> mean rating*
+- <img src="https://render.githubusercontent.com/render/math?math=R_A"> - Player <img src="https://render.githubusercontent.com/render/math?math=R_A"> mean rating*
+- <img src="https://render.githubusercontent.com/render/math?math=s"> : scale factor (Constant Standard Deviation of player rating <img src="https://render.githubusercontent.com/render/math?math=\sigma=200">)
 
 *Mean rating of a player assumed normally (Gaussian) distributed skill.
 
@@ -146,7 +146,7 @@ The points difference change attributed to MOV follows the below function:
 
 The idea behind extending ELO to doubles matches centers on the principle that all random normal distributions can be formed from a linear combination of other normal random distributions.
 
-Therefore if we consider two individual players each with mean skill and variance $\mu_1$ and $\mu_2$ $\sigma_{1}^2$ and $\sigma_{2}^2$ respectively, we can in theory take the combination of the two as new player.
+Therefore if we consider two individual players each with mean skill and variance <img src="https://render.githubusercontent.com/render/math?math=\mu_1"> and <img src="https://render.githubusercontent.com/render/math?math=\mu_2"> <img src="https://render.githubusercontent.com/render/math?math=\sigma_{1}^2"> and <img src="https://render.githubusercontent.com/render/math?math=\sigma_{2}^2"> respectively, we can in theory take the combination of the two as new player.
 
 This then allows us to estimate the likelihood of one pair of players beating another pair of players.
 
@@ -174,13 +174,13 @@ Wiki Reference [Brier Score](https://en.wikipedia.org/wiki/Brier_score)
 
 <img src="https://render.githubusercontent.com/render/math?math=BS = \frac{1}{N}\sum_{t=1}^{N}(f_t - o_t)^2">
 
-$BS$ - Brier Score
+<img src="https://render.githubusercontent.com/render/math?math=BS"> - Brier Score
 
-$N$ - Number of forecasting instances
+<img src="https://render.githubusercontent.com/render/math?math=N"> - Number of forecasting instances
 
-$f_t$ - Forecast probability for particular observation
+<img src="https://render.githubusercontent.com/render/math?math=f_t"> - Forecast probability for particular observation
 
-$o_t$ - Actual outcome of the event
+<img src="https://render.githubusercontent.com/render/math?math=o_t"> - Actual outcome of the event
 
 
 
@@ -223,5 +223,4 @@ ResultTable Class
 src/elopackage/results.py
 
 This class applies the Player and Elo classes to collected data and was used to optimize parameters to improve predictive ability of the algorithm.
-
 
