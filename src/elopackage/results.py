@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 import math
-from elo import Elo
-from player import Player
+from elopackage.elo import Elo
+from elopackage.player import Player
 
 
 class ResultsTable:
